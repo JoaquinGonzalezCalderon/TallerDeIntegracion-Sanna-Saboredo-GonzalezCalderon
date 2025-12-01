@@ -1,0 +1,51 @@
+# 🔐 Configuración de Autenticación y Roles (Sprint 1 - Tarea T-01)
+
+Este documento registra la configuración de seguridad realizada por Joaquín para el módulo de Usuarios.
+**⚠️ Importante:** Como estos permisos se guardan en la base de datos, si reinician su DB local, deben volver a aplicar estos pasos manualmente.
+
+## 1. Configuración de Roles en Strapi
+
+Para replicar esta configuración, ir a: **Settings > Users & Permissions Plugin > Roles**.
+
+### 👤 Rol: Public (Visitantes no logueados)
+Define qué puede hacer alguien que entra a la web sin cuenta.
+- **Permisos Activos:**
+  - `User-permissions` -> `auth`:
+    - [x] **register**: Habilitado (Para permitir que se creen cuentas nuevas).
+    - [x] **callback** / **connect**: Habilitados por defecto.
+
+### 🔐 Rol: Authenticated (Clientes Logueados)
+Define qué puede hacer un cliente registrado.
+- **Permisos Activos:**
+  - `User-permissions` -> `user`:
+    - [x] **me**: Habilitado (CRÍTICO: Permite que la app sepa quién es el usuario y traiga su perfil).
+
+---
+
+## 2. Cómo probar la autenticación (Postman)
+
+### A. Registro de Usuario (Sign Up)
+* **Método:** `POST`
+* **URL:** `http://localhost:1337/api/auth/local/register`
+* **Body (JSON):**
+  ```json
+  {
+    "username": "cliente_prueba",
+    "email": "test@mateunico.com",
+    "password": "Password123"
+  }
+
+B. Login (Sign In)
+Método: POST
+
+URL: http://localhost:1337/api/auth/local
+
+Body (JSON):
+
+JSON
+
+{
+  "identifier": "test@mateunico.com",
+  "password": "Password123"
+}
+Respuesta Esperada: Debe devolver un objeto con el jwt (token) y los datos del user.
