@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_inventario_variante",
+  "info": {
+    "displayName": "Variante",
+    "description": ""
+  },
+  "attributes": {
+    "nombre": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string"
+    },
+    "precio": {
+      "type": "decimal",
+      "required": true
+    },
+    "stock": {
+      "type": "integer",
+      "required": true,
+      "min": 0
+    },
+    "sku": {
+      "type": "string"
+    },
+    "grabado": {
+      "type": "boolean"
+    }
+  }
+}
